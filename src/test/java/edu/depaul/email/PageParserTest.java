@@ -1,25 +1,26 @@
 package edu.depaul.email;
 
-import java.util.*;
-import java.util.stream.Stream;
-
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.stream.Stream;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
-
-import org.jsoup.Jsoup;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
-
-import org.jsoup.nodes.Document;
 
 
 class PageParserTest {
 
     @Test
-    @DisplayName("Unit test when no links are in doc")
+    @DisplayName("Unit file-1.html when no links are in doc")
     void testZeroLinks() {
         String html = "<html><div>'no link here, sorry'</div></body></html>";
         Document doc = Jsoup.parse(html);
@@ -32,7 +33,7 @@ class PageParserTest {
 
     @ParameterizedTest
     @MethodSource("linksProvider")
-    @DisplayName("Parameterized test on findLinks")
+    @DisplayName("Parameterized file-1.html on findLinks")
     public void testFindLinks(String html, String[] expected) {
         Document doc = Jsoup.parse(html);
         PageParser parser = new PageParser();

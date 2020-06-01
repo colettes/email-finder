@@ -1,25 +1,15 @@
 package edu.depaul.email;
 
-import static org.junit.jupiter.api.Assertions.assertAll;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.mock;
-
-
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
-
-import java.io.OutputStream;
 import java.util.stream.Stream;
+
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 
 class PageFetcherTest {
@@ -29,7 +19,7 @@ class PageFetcherTest {
     void testGetStringValid() {
         PageFetcher pf = new PageFetcher();
         String url = "http://shopteti.com";
-        assertTrue(pf.getString(url)!= null);
+        assertNotNull(pf.getString(url));
     }
 
     @ParameterizedTest
@@ -55,7 +45,7 @@ class PageFetcherTest {
     void testGetValidFromWeb() {
         PageFetcher pf = new PageFetcher();
         String url = "http://shopteti.com";
-        assertTrue(pf.get(url)!= null);
+        assertNotNull(pf.get(url));
     }
 
     // TODO: unsure how to use fromFile in get method. invalid.
@@ -64,7 +54,7 @@ class PageFetcherTest {
     void testGetValidFromFile() {
         PageFetcher pf = new PageFetcher();
         String url = "www.shopteti.com";
-        assertTrue(pf.get(url)!= null);
+        assertNotNull(pf.get(url));
     }
 
     @ParameterizedTest
