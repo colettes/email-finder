@@ -29,8 +29,17 @@ class EmailFinderTest {
     }
 
     @Test
+    @DisplayName("Tests EmailFinder Main with a valid link")
+    void testEmailFinderMain() {
+        clearFiles();
+        String[] url = {"https://www.cdm.depaul.edu/"};
+        EmailFinder ef = new EmailFinder();
+        assertDoesNotThrow(() -> ef.main(url));
+    }
+
+    @Test
     @DisplayName("Tests EmailFinder with a valid link")
-    void testEmailFinderConstructor() {
+    void testEmailFinderRun() {
         clearFiles();
         String[] url = {"https://www.cdm.depaul.edu/"};
         EmailFinder ef = new EmailFinder();
@@ -39,9 +48,18 @@ class EmailFinderTest {
 
     @Test
     @DisplayName("Tests EmailFinder with a invalid link")
-    void testEmailFinderConstructorWithNoURL() {
+    void testEmailFinderRunWithNoURL() {
         clearFiles();
         String[] url = {""};
+        EmailFinder ef = new EmailFinder();
+        assertDoesNotThrow(() -> ef.run(url));
+    }
+
+    @Test
+    @DisplayName("Tests EmailFinder with a multiple arguments")
+    void testEmailFinderRunWithMultipleArgs() {
+        clearFiles();
+        String[] url = new String[]{"https://www.cdm.depaul.edu/","2"};
         EmailFinder ef = new EmailFinder();
         assertDoesNotThrow(() -> ef.run(url));
     }

@@ -78,14 +78,13 @@
              2. a ZIP file containing the source code
         -->
         <artifactId>maven-assembly-plugin</artifactId>
-        <version>${assembler.version}</version>
+        <version>3.1.0</version>
         <configuration>
-          <finalName>email-finder</finalName>
+          <finalName>csmit207-email-finder</finalName>
           <appendAssemblyId>false</appendAssemblyId>
-          <descriptorRefs>
-            <descriptorRef>src</descriptorRef>
-            <descriptorRef>jar-with-dependencies</descriptorRef>
-          </descriptorRefs>
+          <descriptors>
+            <descriptor>src/assembly/assembly.xml</descriptor>
+          </descriptors>
           <archive>
             <manifest>
               <mainClass>edu.depaul.email.EmailFinder</mainClass>
@@ -95,7 +94,7 @@
         <executions>
           <execution>
             <id>make-assembly</id>
-            <phase>package</phase>
+            <phase>verify</phase>
             <goals>
               <goal>single</goal>
             </goals>
@@ -110,6 +109,7 @@
           <effort>Max</effort>
           <threshold>Low</threshold>
           <xmlOutput>true</xmlOutput>
+          <failOnError>false</failOnError>
         </configuration>
         <executions>
           <execution>
@@ -125,6 +125,25 @@
             <version>4.0.3</version>
           </dependency>
         </dependencies>
+      </plugin>
+      <plugin>
+        <groupId>org.jacoco</groupId>
+        <artifactId>jacoco-maven-plugin</artifactId>
+        <version>0.8.2</version>
+        <executions>
+          <execution>
+            <goals>
+              <goal>prepare-agent</goal>
+            </goals>
+          </execution>
+          <execution>
+            <id>report</id>
+            <phase>package</phase>
+            <goals>
+              <goal>report</goal>
+            </goals>
+          </execution>
+        </executions>
       </plugin>
     </plugins>
   </build>

@@ -48,18 +48,10 @@ class PageFetcherTest {
         assertNotNull(pf.get(url));
     }
 
-    // TODO: unsure how to use fromFile in get method. invalid.
-    @Test
-    @DisplayName("Test get method returns a document when URL is good.")
-    void testGetValidFromFile() {
-        PageFetcher pf = new PageFetcher();
-        String url = "www.shopteti.com";
-        assertNotNull(pf.get(url));
-    }
 
     @ParameterizedTest
     @MethodSource("badLinkProvider2")
-    @DisplayName("Test getString throws an exception when URLs are bad.")
+    @DisplayName("Test get throws an exception when URLs are bad.")
     void testGetInvalid(String url) {
         PageFetcher pf = new PageFetcher();
         assertThrows(EmailFinderException.class, () -> pf.get(url));
@@ -74,5 +66,4 @@ class PageFetcherTest {
                 // no link
                 Arguments.of(""));
     }
-
 }
